@@ -45,5 +45,17 @@ schedule.create = (start, duration, title) => {
     })
 }
 
+schedule.update = (start, duration, title, id) => {
+
+    return new Promise((resolve, reject) => {
+        conn.query(`UPDATE hourly set start=?, duration=?, title=? where id = ? `,[start, duration, title, id], (err, results) => {
+            if(err) {
+                return reject(err)
+            }
+            return resolve(results)
+        })
+    })
+}
+
 
 module.exports = schedule

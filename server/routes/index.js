@@ -38,4 +38,16 @@ router.post("/", async (req, res, next) => {
     }
 })
 
+router.patch("/:id", async (req, res, next) => {
+    try {
+        let results = await db.update(req.body.start, req.body.duration, req.body.title, req.params.id)
+        res.json({
+            data: results
+        })
+    } catch (err) {
+        console.log(err)
+        res.sendStatus(500)
+    }
+})
+
 module.exports = router
