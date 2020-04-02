@@ -50,4 +50,18 @@ router.patch("/:id", async (req, res, next) => {
     }
 })
 
+
+
+router.delete("/:id", async (req, res, next) => {
+    try {
+        let results = await db.delete(req.params.id)
+        res.json({
+            data: results
+        })
+    } catch (err) {
+        console.log(err)
+        res.sendStatus(500)
+    }
+})
+
 module.exports = router

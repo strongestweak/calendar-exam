@@ -57,5 +57,16 @@ schedule.update = (start, duration, title, id) => {
     })
 }
 
+schedule.delete = (id) => {
+
+    return new Promise((resolve, reject) => {
+        conn.query(`DELETE FROM hourly where id = ? `,id, (err, results) => {
+            if(err) {
+                return reject(err)
+            }
+            return resolve(results)
+        })
+    })
+}
 
 module.exports = schedule
