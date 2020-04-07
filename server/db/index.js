@@ -2,11 +2,11 @@ const mysql = require("mysql")
 
 const conn = mysql.createPool({
     connectionLimit: 10,
-    password: 'password',
+    password: 'pass',
     user: 'root',
     database: 'DB_Schedule',
     host: 'localhost',
-    port: '3306'
+    port: '3307'
 })
 
 let schedule = {};
@@ -33,22 +33,26 @@ schedule.one = (id) => {
     })
 }
 
-schedule.create = (start, duration, title) => {
+schedule.create = (start, end, title) => {
 
     return new Promise((resolve, reject) => {
-        conn.query(`INSERT INTO hourly (start, duration, title) VALUES (${start}, ${duration}, "${title}") `, (err, results) => {
+        conn.query(`INSERT INTO hourly (start, end, title) VALUES ("${start}", "${end}", "${title}") `, (err, results) => {
             if(err) {
                 return reject(err)
             }
-            return resolve(results)
+          return resolve({
+            start,
+            end,
+            title,
+          })
         })
     })
 }
 
-schedule.update = (start, duration, title, id) => {
+schedule.update = (start, end, title, id) => {
 
     return new Promise((resolve, reject) => {
-        conn.query(`UPDATE hourly set start=?, duration=?, title=? where id = ? `,[start, duration, title, id], (err, results) => {
+        conn.query(`UPDATE hourly set start=?, end=?, title=? where id = ? `,[start, end, title, id], (err, results) => {
             if(err) {
                 return reject(err)
             }

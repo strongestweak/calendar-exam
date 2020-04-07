@@ -28,7 +28,7 @@ router.get("/:id", async (req, res, next) => {
 
 router.post("/", async (req, res, next) => {
     try {
-        let results = await db.create(req.body.start, req.body.duration, req.body.title)
+        let results = await db.create(req.body.start, req.body.end, req.body.title)
         res.json({
             data: results
         })
@@ -40,7 +40,7 @@ router.post("/", async (req, res, next) => {
 
 router.patch("/:id", async (req, res, next) => {
     try {
-        let results = await db.update(req.body.start, req.body.duration, req.body.title, req.params.id)
+        let results = await db.update(req.body.start, req.body.end, req.body.title, req.params.id)
         res.json({
             data: results
         })
