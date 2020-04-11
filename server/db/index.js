@@ -2,7 +2,7 @@ const mysql = require("mysql")
 
 const conn = mysql.createPool({
     connectionLimit: 10,
-    password: '',
+    password: 'password.1',
     user: 'root',
     database: 'DB_Schedule',
     host: 'localhost',
