@@ -6,7 +6,7 @@ const conn = mysql.createPool({
     user: 'root',
     database: 'DB_Schedule',
     host: 'localhost',
-    port: '3307'
+    port: '3306'
 })
 
 let schedule = {};
